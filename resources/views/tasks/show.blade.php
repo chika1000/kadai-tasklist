@@ -6,6 +6,7 @@
 
     <p>タスク: {{ $task->content }}</p>
     <p>status: {{ $task->status }}</p>
+    <p>期限日: {{ $task->deadline }}</p>
     <p>更新日時: {{ $task->updated_at }}</p>
     <p>登録日時: {{ $task->created_at }}</p>
 

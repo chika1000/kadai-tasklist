@@ -52,6 +52,7 @@ class TasksController extends Controller
         $task = new Task;
         $task->content = $request->content;
         $task->status = $request->status;
+        $task->deadline = $request->deadline;
         $task->save();
 
         return redirect('/');
@@ -104,6 +105,7 @@ class TasksController extends Controller
         $task = Task::find($id);
         $task->content = $request->content;
         $task->status = $request->status;
+        $task->deadline = $request->deadline;
         $task->save();
 
         return redirect('/');
