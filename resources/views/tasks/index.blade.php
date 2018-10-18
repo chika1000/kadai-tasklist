@@ -17,7 +17,19 @@
                 @foreach ( $tasks as $task )
                     <tr>
                         <td>{!! link_to_route('tasks.show', $task->content, ['content' => $task->id]) !!}</td>
-                        <td>{{ $task->status }}</td>
+
+                        @if ( $task->status == '進行中' )
+                            <td><span class="label label-info">{{ $task->status }}</span></td>
+                        @elseif ( $task->status == '完了' )
+                            <td><span class="label label-success">{{ $task->status }}</span></td>
+                        @elseif ( $task->status == '待機' )
+                            <td><span class="label label-warning">{{ $task->status }}</span></td>
+                        @elseif ( $task->status == '保留' )
+                            <td><span class="label label-default">{{ $task->status }}</span></td>
+                        @elseif ( $task->status == '中止' )
+                            <td><span class="label label-danger">{{ $task->status }}</span></td>
+                        @endif
+
                         <td>{{ $task->deadline }}</td>
                     </tr>
                 @endforeach

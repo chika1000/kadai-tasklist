@@ -11,7 +11,19 @@
         </tr>
         <tr>
             <th>status</th>
-            <td>{{ $task->status }}</td>
+
+            @if ( $task->status == '進行中' )
+                <td><span class="label label-info">{{ $task->status }}</span></td>
+            @elseif ( $task->status == '完了' )
+                <td><span class="label label-success">{{ $task->status }}</span></td>
+            @elseif ( $task->status == '待機' )
+                <td><span class="label label-warning">{{ $task->status }}</span></td>
+            @elseif ( $task->status == '保留' )
+                <td><span class="label label-default">{{ $task->status }}</span></td>
+            @elseif ( $task->status == '中止' )
+                <td><span class="label label-danger">{{ $task->status }}</span></td>
+            @endif
+
         </tr>
         <tr>
             <th>期限日</th>
