@@ -4,19 +4,29 @@
 
     <h1>タスク新規登録ページ</h1>
 
-    {!! Form::model($task, ['route' => 'tasks.store']) !!}
+    <div class="row">
+        <div class="col-xs-6">
+            {!! Form::model($task, ['route' => 'tasks.store']) !!}
 
-        {!! Form::label('content', 'タスク:') !!}
-        {!! Form::text('content') !!}
+                <div class="form-group">
+                    {!! Form::label('content', 'タスク:') !!}
+                    {!! Form::text('content', null, ['class' => 'form-control']) !!}
+                </div>
 
-        {!! Form::label('status', 'status:') !!}
-        {!! Form::select('status', ['進行中' => '進行中', '完了' => '完了', '待機' => '待機', '保留' => '保留', '中止' => '中止']) !!}
+                <div class="form-group">
+                    {!! Form::label('status', 'status:') !!}
+                    {!! Form::select('status', ['進行中' => '進行中', '完了' => '完了', '待機' => '待機', '保留' => '保留', '中止' => '中止'], null, ['class' => 'form-control']) !!}
+                </div>
 
-        {!! Form::label('deadline', '期限日:') !!}
-        {!! Form::date('deadline', \Carbon\Carbon::now()) !!}
+                <div class="form-group">
+                    {!! Form::label('deadline', '期限日:') !!}
+                    {!! Form::date('deadline', \Carbon\Carbon::now(), null, ['class' => 'form-control']) !!}
+                </div>
 
-        {!! Form::submit('登録') !!}
+                {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
 
-    {!! Form::close() !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
 
 @endsection
