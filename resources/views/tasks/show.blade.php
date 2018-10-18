@@ -25,10 +25,19 @@
             @endif
 
         </tr>
-        <tr>
-            <th>期限日</th>
-            <td>{{ $task->deadline }}</td>
-        </tr>
+
+        @if ( $task->deadline != NULL )
+            <tr class="danger">
+                <th>期限日</th>
+                <td>{{ $task->deadline }}</td>
+            </tr>
+        @else
+            <tr>
+                <th>期限日</th>
+                <td>{{ $task->deadline }}</td>
+            </tr>
+        @endif
+
         <tr>
             <th>更新日時</th>
             <td>{{ $task->updated_at }}</td>
