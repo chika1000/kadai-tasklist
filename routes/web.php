@@ -14,3 +14,6 @@
 Route::get('/', 'TasksController@index');
 
 Route::resource('tasks', 'TasksController');
+
+// status毎の一覧ページ
+Route::get('tasks', 'TasksController@status_working')->name('tasks.status_working');

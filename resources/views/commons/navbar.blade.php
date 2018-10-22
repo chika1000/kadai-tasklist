@@ -11,6 +11,9 @@
                 <a class="navbar-brand" href="/">TaskList</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>{!! link_to_route('tasks.status_working', '進行中') !!}</li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>{!! link_to_route('tasks.create', '新規タスクの登録') !!}</li>
                 </ul>

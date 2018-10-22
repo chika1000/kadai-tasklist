@@ -124,4 +124,16 @@ class TasksController extends Controller
 
         return redirect('/');
     }
+
+    public function status_working()
+    {
+        $tasks = Task::where('status', '進行中')
+                        ->orderByRaw('deadline is NULL ASC')
+                        ->orderBy('deadline', 'ASC')
+                        ->get();
+
+        return view('tasks.status_working', [
+            'tasks' => $tasks,
+        ]);
+    }
 }
