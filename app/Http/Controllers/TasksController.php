@@ -15,7 +15,7 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::all();
+        $tasks = Task::orderByRaw('deadline is NULL ASC')->orderBy('deadline', 'ASC')->get();
 
         return view('tasks.index', [
             'tasks' => $tasks,
