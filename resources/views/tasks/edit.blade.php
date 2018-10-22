@@ -20,7 +20,7 @@
 
                 <div class="form-group">
                     {!! Form::label('deadline', '期限日:') !!}
-                    {!! Form::date('deadline', \Carbon\Carbon::now(), null, ['class' => 'form-control']) !!}
+                    {!! Form::date('deadline', new \Carbon\Carbon($task->deadline), null, ['class' => 'form-control']) !!}
                 </div>
 
                 {!! Form::submit('更新', ['class' => 'btn btn-default']) !!}
