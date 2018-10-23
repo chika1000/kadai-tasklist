@@ -23,6 +23,11 @@
                     {!! Form::date('deadline', new \Carbon\Carbon($task->deadline), null, ['class' => 'form-control']) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('memo', 'メモ:') !!}
+                    {!! Form::textarea('memo', old('memo'), ['class' => 'form-control', 'rows' => '3']) !!}
+                </div>
+
                 {!! Form::submit('更新', ['class' => 'btn btn-default']) !!}
 
             {!! Form::close() !!}

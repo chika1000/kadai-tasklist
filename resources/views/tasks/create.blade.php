@@ -24,6 +24,11 @@
                     {!! Form::date('deadline', \Carbon\Carbon::now(), null, ['class' => 'form-control']) !!}
                 </div>
 
+                <div class="form-group">
+                    {!! Form::label('memo', 'メモ:') !!}
+                    {!! Form::textarea('memo', null, ['class' => 'form-control', 'rows' => '3']) !!}
+                </div>
+
                 {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
 
             {!! Form::close() !!}

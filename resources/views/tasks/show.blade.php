@@ -39,6 +39,10 @@
         @endif
 
         <tr>
+            <th>メモ</th>
+            <td>{!! nl2br(e($task->memo)) !!}</td>
+        </tr>
+        <tr>
             <th>更新日時</th>
             <td>{{ $task->updated_at }}</td>
         </tr>
