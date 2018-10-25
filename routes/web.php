@@ -11,9 +11,15 @@
 |
 */
 
-Route::get('/', 'TasksController@index');
+Route::get('/', function(){
+    return view('welcome');
+});
 
 Route::resource('tasks', 'TasksController');
 
 // status毎の一覧ページ
 Route::get('tasks', 'TasksController@status_working')->name('tasks.status_working');
+
+// ユーザ登録
+Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('signup.get');
+Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
