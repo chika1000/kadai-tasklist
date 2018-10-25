@@ -55,6 +55,7 @@ class TasksController extends Controller
         $task->status = $request->status;
         $task->deadline = $request->deadline;
         $task->memo = $request->memo;
+        $task->mark = $request->mark;
         $task->save();
 
         return redirect('/');
@@ -110,6 +111,7 @@ class TasksController extends Controller
         $task->status = $request->status;
         $task->deadline = $request->deadline;
         $task->memo = $request->memo;
+        $task->mark = $request->mark;
         $task->save();
 
         return redirect('/');

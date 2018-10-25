@@ -23,6 +23,17 @@
                     {!! Form::date('deadline', new \Carbon\Carbon($task->deadline), null, ['class' => 'form-control']) !!}
                 </div>
 
+                <div class="form-group form-inline">
+                    {!! Form::label('mark', 'mark:') !!}
+                    {!! Form::radio('mark', '0', true, ['class' => 'form-control']) !!} (なし)
+                    {!! Form::radio('mark', '1', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: #e62f8b;"></span>
+                    {!! Form::radio('mark', '2', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-star" aria-hidden="true" style="color: #fcc800;"></span>
+                    {!! Form::radio('mark', '3', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-heart" aria-hidden="true" style="color: #eb6ea0;"></span>
+                    {!! Form::radio('mark', '4', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-ok" aria-hidden="true" style="color: #37a34a;"></span>
+                    {!! Form::radio('mark', '5', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-folder-close" aria-hidden="true" style="color: #4496d3;"></span>
+                    {!! Form::radio('mark', '6', null, ['class' => 'form-control']) !!}<span class="glyphicon glyphicon-earphone" aria-hidden="true" style="color: #24140e;"></span>
+                </div>
+
                 <div class="form-group">
                     {!! Form::label('memo', 'メモ:') !!}
                     {!! Form::textarea('memo', null, ['class' => 'form-control', 'rows' => '3']) !!}
