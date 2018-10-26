@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Task;  // 追加
+use App\Http\Controllers\Controller;    // 追加
 
 class TasksController extends Controller
 {
@@ -15,11 +15,17 @@ class TasksController extends Controller
      */
     public function index()
     {
-        $tasks = Task::orderByRaw('deadline is NULL ASC')->orderBy('deadline', 'ASC')->get();
 
-        return view('tasks.index', [
-            'tasks' => $tasks,
-        ]);
+        if ( \Auth::check() ){
+            $user = \Auth::user();
+            $tasks = $user->tasks()->orderByRaw('deadline is NULL ASC')->orderBy('deadline', 'ASC')->get();
+
+            return view('tasks.index', [
+                'tasks' => $tasks,
+            ]);
+        }else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -29,11 +35,15 @@ class TasksController extends Controller
      */
     public function create()
     {
-        $task = new Task;
+        if ( \Auth::check() ){
+            $task = new \App\Task;
 
-        return view('tasks.create', [
-            'task' => $task,
-        ]);
+            return view('tasks.create', [
+                'task' => $task,
+            ]);
+        }else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -50,13 +60,13 @@ class TasksController extends Controller
             'memo' => 'max:255',
         ]);
 
-        $task = new Task;
-        $task->content = $request->content;
-        $task->status = $request->status;
-        $task->deadline = $request->deadline;
-        $task->memo = $request->memo;
-        $task->mark = $request->mark;
-        $task->save();
+        $request->user()->tasks()->create([
+            'content' => $request->content,
+            'status' => $request->status,
+            'deadline' => $request->deadline,
+            'memo' => $request->memo,
+            'mark' => $request->mark,
+        ]);
 
         return redirect('/');
     }
@@ -69,11 +79,16 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $task = Task::find($id);
+        $task = \App\Task::find($id);
 
-        return view('tasks.show', [
-            'task' => $task,
-        ]);
+        if ( \Auth::id() === $task->user_id ){
+
+            return view('tasks.show', [
+                'task' => $task,
+            ]);
+        }else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -84,11 +99,16 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $task = Task::find($id);
+        $task = \App\Task::find($id);
 
-        return view('tasks.edit', [
-            'task' => $task,
-        ]);
+        if ( \Auth::id() === $task->user_id ){
+
+            return view('tasks.edit', [
+                'task' => $task,
+            ]);
+        }else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -106,7 +126,7 @@ class TasksController extends Controller
             'memo' => 'max:255',
         ]);
 
-        $task = Task::find($id);
+        $task = \App\Task::find($id);
         $task->content = $request->content;
         $task->status = $request->status;
         $task->deadline = $request->deadline;
@@ -125,21 +145,30 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        $task = Task::find($id);
-        $task->delete();
+        $task = \App\Task::find($id);
+
+        if ( \Auth::id() === $task->user_id ){
+            $task->delete();
+        }
 
         return redirect('/');
     }
 
     public function status_working()
     {
-        $tasks = Task::where('status', '進行中')
-                        ->orderByRaw('deadline is NULL ASC')
-                        ->orderBy('deadline', 'ASC')
-                        ->get();
+        if ( \Auth::check() ){
+            $user = \Auth::user();
+            $tasks = $user->tasks()
+                            ->where('status', '進行中')
+                            ->orderByRaw('deadline is NULL ASC')
+                            ->orderBy('deadline', 'ASC')
+                            ->get();
 
-        return view('tasks.status_working', [
-            'tasks' => $tasks,
-        ]);
+            return view('tasks.status_working', [
+                'tasks' => $tasks,
+            ]);
+        }else {
+            return redirect('/');
+        }
     }
 }
