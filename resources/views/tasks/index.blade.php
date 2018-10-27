@@ -19,7 +19,9 @@
                     <tr>
                         <td>{!! link_to_route('tasks.show', $task->content, ['content' => $task->id]) !!}</td>
                         
-                        @if ( $task->mark == '0' )
+                        @if ( $task->mark == NULL )
+                            <td><span> </span></td>
+                        @elseif ( $task->mark == '0' )
                             <td><span> </span></td>
                         @elseif ( $task->mark == '1' )
                             <td><span class="glyphicon glyphicon-flag" aria-hidden="true" style="color: #e62f8b;"></span></td>
