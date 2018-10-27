@@ -4744,7 +4744,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-color-yellow .navbar-nav > .open > a:hover,
 .navbar-color-yellow .navbar-nav > .open > a:focus {
   color: #7e5f4d;
-  background-color: #080808;
+  background-color: #fff352;
 }
 @media (max-width: 767px) {
   .navbar-color-yellow .navbar-nav .open .dropdown-menu > .dropdown-header {
